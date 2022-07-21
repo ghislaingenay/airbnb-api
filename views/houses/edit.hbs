@@ -1,0 +1,65 @@
+{{>nav user=user}}
+<!-- Form -->
+<div class="container">
+  <h1 class="pt-3 pb-3">Edit a house</h1>
+  <form action="/houses/{{housed._id}}?_method=PATCH" method="POST">
+    <div class="mb-3">
+      <h6 class="font-weight-bold mb-1 mt-0">Short Title</h6>
+      <input type="text" name="title" class="form-control" value="{{housed.title}}">
+    </div>
+    <div class="mb-3">
+      <h6 class="font-weight-bold mb-1 mt-0">Description</h6>
+      <textarea class="form-control" name="description" rows="3">{{housed.description}}</textarea>
+    </div>
+    <div class="mb-3">
+      <h6 class="font-weight-bold mb-1 mt-0">Number of rooms</h6>
+      <select name="rooms" class="form-select" aria-label="Default select example">
+        {{!-- if {{house.rooms}} selected {{/if}} --}}
+        <option {{#ifEq housed.rooms '' }} selected {{/ifEq}}>Any rooms</option>
+        <option {{#ifEq housed.rooms 1 }} selected {{/ifEq}}value="1">1 room</option>
+        <option {{#ifEq housed.rooms 2 }} selected {{/ifEq}} value="2">2 rooms</option>
+        <option {{#ifEq housed.rooms 3 }} selected {{/ifEq}} value="3">3 rooms</option>
+        <option {{#ifEq housed.rooms 4 }} selected {{/ifEq}}value="4">4 rooms</option>
+        <option {{#ifEq housed.rooms 5 }} selected {{/ifEq}}value="5">5 rooms</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <h6 class="font-weight-bold mb-1 mt-0">Location</h6>
+      <select class="form-select" name="location" aria-label="Default select example">
+        <option {{#ifEq housed.location 'Any location' }} selected {{/ifEq}}>Any location</option>
+        <option {{#ifEq housed.location 'Koh Phangan' }} selected {{/ifEq}} value="Koh Phangan">Koh Phangan</option>
+        <option {{#ifEq housed.location 'Koh Samui' }} selected {{/ifEq}} value="Koh Samui">Koh Samui</option>
+        <option {{#ifEq housed.location 'Bali' }} selected {{/ifEq}}value="Bali">Bali</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <h6 class="font-weight-bold mb-1 mt-0">Price (per night)</h6>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa-solid fa-dollar-sign"></i></span>
+        <input type="number" name="price" class="form-control" placeholder="{{housed.price}}" aria-label="Username"
+          aria-describedby="basic-addon1">
+      </div>
+    </div>
+    <div class="mb-3">
+      <h6 class="font-weight-bold mb-1 mt-0">Add photos (up to 9)</h6>
+      <div class="container">
+        <div class="row row-cols-12">
+          <input type="text" name="picture1" class="form-control mb-2" placeholder="{{housed.photos.[0]}}">
+          <input type="text" name="picture2" class="form-control mb-2" placeholder="{{housed.photos.[1]}}">
+          <input type="text" name="picture3" class="form-control mb-2" placeholder="{{housed.photos.[2]}}">
+          <input type="text" name="picture4" class="form-control mb-2" placeholder="{{housed.photos.[3]}}">
+          <input type="text" name="picture5" class="form-control mb-2" placeholder="{{housed.photos.[4]}}">
+          <input type="text" name="picture6" class="form-control mb-2" placeholder="{{housed.photos.[5]}}">
+          <input type="text" name="picture7" class="form-control mb-2" placeholder="{{housed.photos.[6]}}">
+          <input type="text" name="picture8" class="form-control mb-2" placeholder="{{housed.photos.[7]}}">
+          <input type="text" name="picture9" class="form-control mb-2" placeholder="{{housed.photos.[_]}}">
+
+        </div>
+
+      </div>
+    </div>
+    <button type="submit" name="save-house" class="btn btn-success d-block">Save Changes</button>
+    <button type="submit" name="delete house" class="btn btn-danger d-block mt-2">Delete House</button>
+  </form>
+</div>
